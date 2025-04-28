@@ -1,140 +1,179 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Arial", sans-serif;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e1e2f, #3a3a5e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
   body {
-    background: linear-gradient(135deg, #1e1e2f, #3a3a5e);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
+    padding: 10px;
   }
-  
-  /* Chat Container */
+}
+
+/* Chat Container */
+.main-cont {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  animation: pop-in 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
   .main-cont {
-    width: 800px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    animation: pop-in 0.5s ease-in-out;
+    width: 100%;
+    padding: 15px;
   }
-  
-  /* Chat Box */
-  .chat-box {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+}
+
+/* Chat Box */
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Messages */
+.messages {
+  min-height: 80px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Input */
+input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  transition: 0.3s ease;
+  min-width: 200px; /* Ensures input doesn't shrink too much */
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Button */
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #ff7b72;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #ff5a52;
+}
+
+button:disabled {
+  background: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes pop-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
   }
-  
-  /* Messages */
-  .messages {
-    min-height: 80px;
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  /* Controls */
-  .controls {
-    display: flex;
-    gap: 10px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    transition: 0.3s ease;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes typing {
+  0% {
+    content: "Typing.";
   }
-  
-  input:focus {
-    background: rgba(255, 255, 255, 0.5);
+  33% {
+    content: "Typing..";
   }
-  
-  button {
-    padding: 10px 15px;
-    border: none;
-    background: #ff7b72;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-  
-  button:hover {
-    background: #ff5a52;
-  }
-  
-  button:disabled {
-    background: rgba(255, 255, 255, 0.5);
-    cursor: not-allowed;
-  }
-  
-  /* Animations */
-  @keyframes pop-in {
-    from {
-      transform: scale(0.9);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes typing {
-    0% {
-      content: "Typing.";
-    }
-    33% {
-      content: "Typing..";
-    }
-    66% {
-      content: "Typing...";
-    }
-  }
-  
-  .answer {
-    color: white;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-  
-  .fade-in {
-    animation: fade-in 0.5s ease-in-out;
-  }
-  
-  .typing::after {
+  66% {
     content: "Typing...";
-    animation: typing 1.5s infinite;
   }
-  
+}
+
+.answer {
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+.typing::after {
+  content: "Typing...";
+  animation: typing 1.5s infinite;
+}
+
+/* Mobile Support */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input {
+    width: 100%;
+    min-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .messages {
+    max-height: 300px;
+  }
+}

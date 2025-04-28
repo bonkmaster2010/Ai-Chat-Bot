@@ -6,7 +6,7 @@ function Main() {
   const [res, setRes] = React.useState("");
   const [answer, setAnswer] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const [st, setST] = React.useState(true);
+  const [st, setST] = React.useState(false);
 
   // Function to simulate typing effect
   const simulateTyping = (text) => {
