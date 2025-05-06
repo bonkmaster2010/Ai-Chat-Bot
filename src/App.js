@@ -10,20 +10,25 @@ function Main() {
 
   // Function to simulate typing effect
   const simulateTyping = (text) => {
-    if (st) {  
+    if (st) {
       setAnswer(""); 
       let index = 0;
       const interval = setInterval(() => {
-        setAnswer((prev) => prev + text[index]);
-        index += 1;
-        if (index === text.length) {
-          clearInterval(interval); 
+        if (index >= text.length) {
+          clearInterval(interval);
+          return;
         }
-      }, 100); 
+  
+        setAnswer((prev) => prev + text.charAt(index));
+        index += 1;
+      }, 100);
     } else {
-      setAnswer(text); 
+      setAnswer(text);
     }
   };
+  
+  
+
 
   async function ftch() {
     setLoading(true);
@@ -54,6 +59,12 @@ function Main() {
     setRes(""); 
 }
 
+function enter(e){
+  if(e.key === "Enter"){
+    ftch()
+  }
+}
+
   return (
     <div className="main-cont">
       <Tilt
@@ -75,15 +86,15 @@ function Main() {
             placeholder="Enter a question..."
             value={res}
             onChange={(e) => setRes(e.target.value)}
+            onKeyDown={enter}
           />
-          <button onClick={ftch} disabled={loading}>
+          <button  onClick={ftch} disabled={loading}>
             {loading ? "Typing..." : "Send"}
           </button>
         </div>
 
         <div className="settings">
           <div className="btns">
-            {/* Button to toggle simulateTyping */}
             <button onClick={() => setST(!st)}>
               {st ? "Disable Typing Effect" : "Enable Typing Effect"}
             </button>
